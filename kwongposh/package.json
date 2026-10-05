@@ -1,0 +1,11 @@
+{
+  "name": "kwongposh-site",
+  "private": true,
+  "type": "module",
+  "description": "The KwongPosh website and its small backend for the private collection.",
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "ornaments": "node tools/ornaments.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

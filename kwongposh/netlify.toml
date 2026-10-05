@@ -1,0 +1,15 @@
+# Netlify settings. Netlify reads this automatically when you connect the repo.
+[build]
+  publish   = "public"              # the website files
+  functions = "netlify/functions"   # the backend (/api/...)
+
+[functions]
+  node_bundler = "esbuild"
+
+# Basic security headers for every page
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
