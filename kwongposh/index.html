@@ -6,20 +6,19 @@
 <title>KwongPosh | Kashmir, by hand</title>
 <meta name="description" content="One-of-one crafts from Kashmir. Every piece signed by its maker and traced to where it was made.">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="assets/roundel.webp">
+<link rel="icon" href="assets/logo-mark.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FFFFFF;
   --soft:#F6F6F4;
   --ink:#111111;
   --muted:#6B6B6B;
-  --line:#E8E8E8;
-  --accent:#A0281F; /* the chinar, taken from the logo */
+  --line:#E6E6E6;
+  --accent:#A0281F; /* chinar red, from the logo */
   --sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
-  --script:"Noto Nastaliq Urdu",serif;
   --mono:"Geist Mono",ui-monospace,Menlo,monospace;
   --ease:cubic-bezier(.2,0,0,1);
   --gutter:clamp(20px,4vw,56px);
@@ -27,107 +26,96 @@
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img,svg{display:block;max-width:100%}
+img,svg,canvas{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 p,h1,h2,h3{margin:0}
 ::selection{background:var(--ink);color:var(--bg)}
 :focus-visible{outline:1px solid var(--ink);outline-offset:4px}
 .wrap{padding-inline:var(--gutter)}
-.ur{font-family:var(--script);line-height:1.9;direction:rtl;unicode-bidi:isolate}
 .small{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
 .mono{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--muted)}
 .muted{color:var(--muted)}
 section{position:relative}
 .sec{padding-block:clamp(110px,14vw,200px)}
+h2.big{font-weight:500;font-size:clamp(32px,4.2vw,60px);letter-spacing:-.035em;line-height:1.02;max-width:18ch}
 .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-top:1px solid var(--line);padding-top:20px;margin-bottom:clamp(40px,6vw,80px)}
 .sec-head h2{font-weight:500}
-h2.big{font-weight:500;font-size:clamp(32px,4.2vw,60px);letter-spacing:-.035em;line-height:1.02;max-width:18ch}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font:500 14px/1 var(--sans);letter-spacing:.04em;cursor:pointer;white-space:nowrap;transition:background .2s var(--ease),color .2s var(--ease)}
+.btn:hover{background:var(--bg);color:var(--ink)}
+.btn:active{transform:translateY(1px)}
 
 /* nav */
-.nav{position:fixed;inset:0 0 auto;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:border-color .3s var(--ease);border-bottom:1px solid transparent}
-.nav.line{border-color:var(--line)}
+.nav{position:fixed;inset:0 0 auto;z-index:20;transition:background .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent}
+.nav.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)}
 .nav .wrap{height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 .nav a{transition:opacity .15s var(--ease)}
 .nav a:hover{opacity:.55}
-.logo{justify-self:center;display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+.logo{justify-self:center;display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase;opacity:0;transform:translateY(-4px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.nav.solid .logo{opacity:1;transform:none}
 .logo img{width:30px;height:30px}
 .nav-cta{justify-self:end}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font:500 14px/1 var(--sans);letter-spacing:.04em;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease)}
-.btn:hover{background:var(--bg);color:var(--ink)}
-.btn.ghost{background:var(--bg);color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:var(--bg)}
-
-/* hero */
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding-top:64px}
-.hero-top{display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter);padding-top:clamp(56px,10vh,120px)}
-.hero h1{font-weight:500;font-size:clamp(40px,5.2vw,80px);line-height:1;letter-spacing:-.035em}
-.hero-side{align-self:end;justify-self:end;max-width:340px}
-.hero-side p{color:var(--muted)}
-.hero-side .ctas{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
-.seal{display:flex;justify-content:center;padding-block:clamp(32px,6vh,64px)}
-.seal img{width:clamp(120px,14vw,190px);height:auto}
-.mark{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:4px 24px;border-top:1px solid var(--ink);padding-block:14px 18px}
-.mark span:first-child{font-weight:600;font-size:clamp(56px,15.4vw,260px);letter-spacing:-.05em;line-height:.8;margin-left:-.04em}
-.mark .ur{font-size:clamp(20px,3vw,48px);color:var(--muted);line-height:1.4;white-space:nowrap}
+/* hero: the warp */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden}
+#warp{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
+.hero-inner{position:absolute;left:50%;top:50%;transform:translate(-50%,-38%);display:flex;flex-direction:column;align-items:center;text-align:center;width:min(92vw,520px);pointer-events:none}
+.hero-inner > *{pointer-events:auto}
+.lockup{width:clamp(150px,15vw,210px);height:auto}
+.hero h1{font-weight:500;font-size:clamp(34px,3.6vw,54px);letter-spacing:-.035em;line-height:1;margin-top:clamp(20px,3vh,32px)}
+.hero p{color:var(--muted);margin-top:14px;max-width:34ch}
+.hero .btn{margin-top:26px}
+.hint{position:absolute;left:var(--gutter);bottom:22px;color:var(--muted);opacity:.0;transition:opacity 1s var(--ease) 2.4s}
+.ready .hint{opacity:1}
 
 /* statement */
-.statement{padding-block:clamp(120px,18vw,240px)}
+.statement{padding-block:clamp(120px,16vw,220px)}
 .statement p{font-size:clamp(26px,3.2vw,48px);line-height:1.15;letter-spacing:-.025em;font-weight:500;max-width:21ch;margin-inline:auto;text-align:center}
 .statement em{font-style:normal;color:var(--accent)}
 
-/* crafts index */
-.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:center;gap:24px;border-top:1px solid var(--line);padding-block:clamp(20px,2.6vw,34px)}
-.rows .row:last-child{border-bottom:1px solid var(--line)}
+/* crafts: rows that pluck like strings */
+.rows{position:relative}
+.row{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto;align-items:center;gap:24px;padding-block:clamp(22px,2.8vw,36px)}
 .row h3{font-weight:500;font-size:clamp(30px,4.4vw,68px);letter-spacing:-.035em;line-height:1;transition:transform .5s var(--ease)}
-.row p{color:var(--muted);max-width:36ch;opacity:.0;transform:translateY(6px);transition:opacity .4s var(--ease),transform .5s var(--ease)}
-.row .meta{display:flex;align-items:center;gap:clamp(16px,2.4vw,40px);justify-self:end}
-.row .ur{font-size:clamp(22px,2.2vw,34px);line-height:1.5}
+.row p{color:var(--muted);max-width:36ch}
+.row .small{justify-self:end;color:var(--muted)}
 .row:hover h3{transform:translateX(10px)}
-.row:hover p{opacity:1;transform:none}
-.crafts-foot{padding-top:24px}
+.string{position:absolute;left:0;right:0;bottom:-10px;width:100%;height:20px;overflow:visible;pointer-events:none}
+.string path{fill:none;stroke:#D9D9D9;stroke-width:1;vector-effect:non-scaling-stroke;transition:stroke .3s var(--ease)}
+.row.plucked .string path{stroke:var(--ink)}
+.rows .top{position:absolute;left:0;right:0;top:0;height:1px;background:var(--line)}
+.crafts-foot{padding-top:28px}
 
-/* journey */
-.journey{background:var(--soft)}
-.stops{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--ink);margin-top:clamp(40px,6vw,80px)}
-.stop{padding:20px 20px 0 0}
-.stop + .stop{padding-left:20px;border-left:1px solid var(--line)}
-.stop .ur{font-size:clamp(34px,3vw,48px);display:block;text-align:left;line-height:1.7}
-.stop h3{font-weight:500;font-size:18px;margin:6px 0 6px}
-.stop p{color:var(--muted);font-size:15px;max-width:24ch}
-.stop .mono{display:block;margin-top:14px}
-.stop.you .ur,.stop.you h3{color:var(--accent)}
-
-/* provenance */
-.trace-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(32px,5vw,72px);align-items:start;margin-top:clamp(40px,6vw,72px)}
-.map{position:relative;border:1px solid var(--line);aspect-ratio:8/5.4;overflow:hidden}
-.map svg{width:100%;height:100%}
-.map .mono{position:absolute;left:16px;bottom:12px}
+/* provenance map */
+.trace-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.55fr);gap:clamp(32px,4vw,64px);align-items:start;margin-top:clamp(40px,6vw,72px)}
+.map{position:relative;border:1px solid var(--line);background:#fff}
+.map svg{width:100%;height:auto}
+.map text{paint-order:stroke;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round}
 .pin{cursor:pointer}
-.pin .ring{fill:none;stroke:var(--accent);stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center}
-.pin .core{fill:#fff;stroke:var(--ink);stroke-width:1.2;transition:fill .3s,stroke .3s}
-.pin text{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;fill:var(--muted)}
+.pin .halo{fill:var(--accent);opacity:0;transform-box:fill-box;transform-origin:center}
+.pin .core{fill:#fff;stroke:var(--ink);stroke-width:1.3;transition:fill .3s var(--ease),stroke .3s var(--ease)}
+.pin text{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;fill:var(--ink);transition:opacity .3s}
+.pin.dim{opacity:.28}
 .pin.active .core{fill:var(--accent);stroke:var(--accent)}
-.pin.active .ring{opacity:1;animation:pulse 2.4s var(--ease) infinite}
-.pin.dim{opacity:.3;transition:opacity .4s}
-@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
-#route{fill:none;stroke:var(--accent);stroke-width:1.3;stroke-dasharray:4 5}
-#routeMask path{fill:none;stroke:#fff;stroke-width:6;transition:stroke-dashoffset 2.2s var(--ease)}
+.pin.active .halo{animation:halo 2.2s var(--ease) infinite}
+@keyframes halo{0%{transform:scale(.4);opacity:.35}100%{transform:scale(2.4);opacity:0}}
+#route{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:5 4}
+#routeMaskPath{fill:none;stroke:#fff;stroke-width:8;transition:stroke-dashoffset 2.4s var(--ease)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px}
 .chip{font:500 13px/1 var(--sans);height:36px;padding:0 14px;background:#fff;border:1px solid var(--line);color:var(--ink);cursor:pointer;transition:all .2s var(--ease)}
 .chip:hover{border-color:var(--ink)}
 .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .code-in{display:flex;align-items:center;border-bottom:1px solid var(--ink);margin-bottom:20px}
 .code-in label{position:absolute;left:-9999px}
-.code-in input{flex:1;min-width:0;border:0;background:transparent;font:400 18px/1 var(--mono);color:var(--ink);padding:12px 0;outline:none}
+.code-in input{flex:1;min-width:0;border:0;background:transparent;font:400 17px/1 var(--mono);color:var(--ink);padding:12px 0;outline:none}
 .code-in input::placeholder{color:#9A9A9A}
 .code-in button{border:0;background:transparent;font:500 14px/1 var(--sans);cursor:pointer;padding:10px 0 10px 12px;color:var(--ink)}
-.steps{list-style:none;margin:0;padding:0}
-.steps li{padding:14px 0;border-bottom:1px solid var(--line);opacity:.3;transition:opacity .5s var(--ease)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:26px 1fr;padding:14px 0;border-bottom:1px solid var(--line);opacity:.25;transition:opacity .5s var(--ease)}
+.steps li::before{counter-increment:s;content:counter(s);font:400 12px/1.6 var(--mono);color:var(--accent)}
 .steps li.lit{opacity:1}
-.steps .what{display:block}
-.steps .where{display:block;margin-top:4px}
+.steps .where{grid-column:2;margin-top:3px}
 .trace-note{margin-top:16px;font-size:14px}
 
 /* promise */
@@ -136,52 +124,48 @@ h2.big{font-weight:500;font-size:clamp(32px,4.2vw,60px);letter-spacing:-.035em;l
 .promise li h3{font-weight:500;font-size:clamp(20px,1.7vw,24px);letter-spacing:-.02em;margin-bottom:10px}
 .promise li p{color:var(--muted);max-width:28ch}
 
-/* progress */
-.figures{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gutter)}
-.figure strong{display:block;font-weight:500;font-size:clamp(52px,6.4vw,104px);letter-spacing:-.05em;line-height:.95;font-variant-numeric:tabular-nums}
+/* origin */
+.origin{background:var(--soft)}
+.origin .lead{font-weight:500;font-size:clamp(28px,3.4vw,50px);letter-spacing:-.03em;line-height:1.1;max-width:22ch}
+.origin .lead span{color:var(--muted)}
+.origin .body{margin-top:24px;color:var(--muted);max-width:52ch}
+.figures{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gutter);margin-top:clamp(64px,8vw,110px)}
+.figure{border-top:1px solid var(--ink);padding-top:16px}
+.figure strong{display:block;font-weight:500;font-size:clamp(48px,6vw,96px);letter-spacing:-.05em;line-height:.95;font-variant-numeric:tabular-nums}
 .figure span{display:block;margin-top:12px;color:var(--muted);max-width:26ch}
-.road{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gutter);margin-top:clamp(56px,7vw,96px)}
-.road div{border-top:1px solid var(--line);padding-top:16px}
-.road .small{color:var(--muted)}
-.road .now{color:var(--accent)}
-.road p{margin-top:8px;max-width:32ch}
 
-/* founders */
-.founder-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter)}
-.founder{border-top:1px solid var(--ink);padding-top:18px}
-.founder h3{font-weight:500;font-size:clamp(22px,2vw,28px);letter-spacing:-.02em}
-.founder .small{display:block;margin:6px 0 14px;color:var(--muted)}
-.founder p{color:var(--muted);max-width:44ch}
-
-/* join */
-.join{background:var(--soft);padding-block:clamp(100px,14vw,180px);text-align:center}
-.join h2{font-weight:500;font-size:clamp(34px,4.6vw,68px);letter-spacing:-.035em;line-height:1}
-.join p{color:var(--muted);margin:20px auto 0;max-width:40ch}
-.join form{display:flex;max-width:460px;margin:40px auto 0;border:1px solid var(--ink);background:#fff}
-.join label{position:absolute;left:-9999px}
-.join input{flex:1;min-width:0;border:0;background:transparent;font:400 15px/1 var(--sans);padding:0 18px;height:52px;color:var(--ink);outline:none}
-.join input::placeholder{color:#8A8A8A}
-.join .btn{height:52px;border:0}
-.join .note{font-size:14px;margin-top:14px;min-height:22px;color:var(--ink)}
-.join .note.err{color:var(--accent)}
+/* access */
+.access{padding-block:clamp(110px,14vw,190px);text-align:center}
+.access h2{font-weight:500;font-size:clamp(34px,4.6vw,68px);letter-spacing:-.035em;line-height:1}
+.access p{color:var(--muted);margin:18px auto 0;max-width:38ch}
+.access form{display:flex;max-width:460px;margin:40px auto 0;border:1px solid var(--ink)}
+.access label{position:absolute;left:-9999px}
+.access input{flex:1;min-width:0;border:0;background:transparent;font:400 15px/1 var(--sans);padding:0 18px;height:52px;color:var(--ink);outline:none}
+.access input::placeholder{color:#8A8A8A}
+.access .btn{height:52px;border:0}
+.access .note{font-size:14px;margin-top:14px;min-height:22px}
+.access .note.err{color:var(--accent)}
 
 /* footer */
-footer{padding-block:56px 32px;color:var(--muted);font-size:14px}
-footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--gutter)}
-footer .logo{justify-self:start;color:var(--ink)}
+footer{border-top:1px solid var(--line);padding-block:48px 28px;color:var(--muted);font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--gutter);align-items:start}
+footer .brand img{width:88px;height:auto}
 footer address{font-style:normal;line-height:1.7}
 footer ul{list-style:none;margin:0;padding:0;line-height:1.9}
 footer a:hover{color:var(--ink)}
-footer .bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);margin-top:40px;padding-top:20px;font-size:13px}
-footer .bottom .ur{font-size:20px;line-height:1.5}
+footer .bottom{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);margin-top:40px;padding-top:20px;font-size:13px}
 
-/* reveal */
-.js .rv{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+/* reveals */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
 .js .rv.in{opacity:1;transform:none}
+.js .hero-inner > *{opacity:0;transform:translateY(12px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .ready .hero-inner > *{opacity:1;transform:none}
+.js .ready .hero-inner > :nth-child(1){transition-delay:.9s}
+.js .ready .hero-inner > :nth-child(2){transition-delay:1.15s}
+.js .ready .hero-inner > :nth-child(3){transition-delay:1.3s}
+.js .ready .hero-inner > :nth-child(4){transition-delay:1.45s}
 
 @media (max-width:980px){
-  .stops{grid-template-columns:1fr 1fr}
-  .stop,.stop + .stop{padding:20px 16px 24px 0;border-left:0;border-bottom:1px solid var(--line)}
   .promise ol{grid-template-columns:1fr 1fr;row-gap:40px}
   .trace-grid{grid-template-columns:1fr}
 }
@@ -189,20 +173,20 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
   .nav nav{display:none}
   .nav .wrap{grid-template-columns:auto 1fr}
   .logo{justify-self:start}
-  .hero-top{grid-template-columns:1fr}
-  .hero-side{justify-self:start}
-  .row{grid-template-columns:1fr auto;row-gap:8px}
-  .row p{grid-column:1/-1;grid-row:2;opacity:1;transform:none;font-size:15px}
-  .row .meta{grid-row:1;grid-column:2}
-  .row .meta .small{display:none}
-  .stops,.promise ol,.figures,.road,.founder-grid{grid-template-columns:1fr}
-  .figures{row-gap:36px}
-  .road,.founder-grid{row-gap:28px}
+  .hero-inner{transform:translate(-50%,-30%)}
+  .row{grid-template-columns:1fr auto;row-gap:6px}
+  .row p{grid-column:1/-1;grid-row:2;font-size:15px}
+  .row .small{grid-row:1;grid-column:2}
+  .promise ol,.figures{grid-template-columns:1fr}
+  .figures{row-gap:32px}
   footer .cols{grid-template-columns:1fr}
+  .hint{display:none}
+  .map text{font-size:17px;stroke-width:5px}
+  .map .pin text{font-size:19px}
 }
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
-  .js .rv{opacity:1;transform:none}
+  .js .rv,.js .hero-inner > *{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -210,24 +194,24 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <nav aria-label="Primary"><ul class="small"><li><a href="#crafts">Crafts</a></li><li><a href="#trace">Provenance</a></li><li><a href="#story">Story</a></li></ul></nav>
-    <a class="logo" href="#top" aria-label="KwongPosh home"><img src="assets/roundel.webp" alt="" width="30" height="30">KwongPosh</a>
-    <a class="nav-cta small" href="#join">Join the circle</a>
+    <nav aria-label="Primary"><ul class="small"><li><a href="#crafts">Crafts</a></li><li><a href="#trace">Provenance</a></li><li><a href="#origin">Origin</a></li></ul></nav>
+    <a class="logo" href="#top" aria-label="KwongPosh home"><img src="assets/logo-mark.webp" alt="" width="30" height="30">KwongPosh</a>
+    <a class="nav-cta small" href="#access">Request access</a>
   </div>
 </header>
 
 <main id="top">
 
-<section class="hero wrap" aria-labelledby="hero-title">
-  <div class="hero-top">
-    <h1 id="hero-title" class="rv">Kashmir,<br>by hand.</h1>
-    <div class="hero-side rv">
-      <p>One-of-one crafts from the Valley. Every piece signed by its maker and traced to where it was made.</p>
-      <div class="ctas"><a class="btn" href="#join">Join the circle</a><a class="btn ghost" href="#trace">Trace a piece</a></div>
-    </div>
+<!-- HERO: hanging warp threads -->
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <canvas id="warp" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <img class="lockup" src="assets/logo-lockup.webp" alt="KwongPosh. Srinagar, Kolkata, Beyond." width="351" height="419">
+    <h1 id="hero-title">Kashmir, by hand.</h1>
+    <p>One-of-one crafts, each signed by its maker and traced to where it was made.</p>
+    <a class="btn" href="#access">Request access</a>
   </div>
-  <div class="seal rv"><img src="assets/roundel.webp" alt="The KwongPosh chinar seal" width="360" height="360"></div>
-  <div class="mark" aria-hidden="true"><span>KwongPosh</span><span class="ur" lang="ur">کونگ پوش</span></div>
+  <span class="hint mono">Move through the threads</span>
 </section>
 
 <section class="statement wrap" aria-label="Our belief">
@@ -238,54 +222,86 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
 <section class="wrap" id="crafts" aria-labelledby="crafts-title" style="padding-bottom:clamp(110px,14vw,200px)">
   <div class="sec-head small"><h2 id="crafts-title" class="small">The crafts</h2><span class="muted">Four to begin</span></div>
   <div class="rows">
-    <div class="row rv"><h3>Kani Pashmina</h3><p>Woven with wooden tojis, one weft colour at a time.</p><div class="meta"><span class="ur" lang="ur">کانی</span><span class="small muted">Kanihama</span></div></div>
-    <div class="row rv"><h3>Sozni</h3><p>Needlework so fine it is mistaken for weaving.</p><div class="meta"><span class="ur" lang="ur">سوزنی</span><span class="small muted">Srinagar</span></div></div>
-    <div class="row rv"><h3>Walnut</h3><p>Deep relief carved in seasoned Kashmiri walnut.</p><div class="meta"><span class="ur" lang="ur">اخروٹ</span><span class="small muted">Anantnag</span></div></div>
-    <div class="row rv"><h3>Papier-mâché</h3><p>Burnished with river stone, painted by hand.</p><div class="meta"><span class="ur" lang="ur">قلمدانی</span><span class="small muted">Zadibal</span></div></div>
+    <span class="top" aria-hidden="true"></span>
+    <div class="row rv"><h3>Kani Pashmina</h3><p>Woven with wooden tojis, one weft colour at a time.</p><span class="small">Kanihama</span></div>
+    <div class="row rv"><h3>Sozni</h3><p>Needlework so fine it is mistaken for weaving.</p><span class="small">Srinagar</span></div>
+    <div class="row rv"><h3>Walnut</h3><p>Deep relief carved in seasoned Kashmiri walnut.</p><span class="small">Anantnag</span></div>
+    <div class="row rv"><h3>Papier-mâché</h3><p>Burnished with river stone, painted by hand.</p><span class="small">Srinagar</span></div>
   </div>
   <p class="crafts-foot muted rv">Photography arrives with the founding collection.</p>
 </section>
 
-<!-- JOURNEY -->
-<section class="journey sec wrap" aria-labelledby="journey-title">
-  <h2 id="journey-title" class="big rv">One shawl. Five places it can prove it has been.</h2>
-  <div class="stops">
-    <div class="stop rv"><span class="ur" lang="ur" aria-hidden="true">پشمینہ</span><h3>Fibre</h3><p>Combed by hand from Changthangi goats.</p><span class="mono">Changthang, 33.3° N</span></div>
-    <div class="stop rv"><span class="ur" lang="ur" aria-hidden="true">یِندر</span><h3>Spinning</h3><p>Spun on the yinder wheel.</p><span class="mono">Srinagar, 34.08° N</span></div>
-    <div class="stop rv"><span class="ur" lang="ur" aria-hidden="true">کانی</span><h3>Weave</h3><p>Woven on a kani loom.</p><span class="mono">Kanihama, 34.07° N</span></div>
-    <div class="stop rv"><span class="ur" lang="ur" aria-hidden="true">مُہر</span><h3>Seal</h3><p>Signed with the artisan's insignia.</p><span class="mono">Lal Bazar, Srinagar</span></div>
-    <div class="stop you rv"><span class="ur" lang="ur" aria-hidden="true">آپ</span><h3>You</h3><p>The last coordinate is yours.</p><span class="mono">Anywhere</span></div>
-  </div>
-</section>
-
 <!-- PROVENANCE -->
-<section class="sec wrap" id="trace" aria-labelledby="trace-title">
+<section class="sec wrap" id="trace" aria-labelledby="trace-title" style="padding-top:0">
   <h2 id="trace-title" class="big rv">Ask any piece where it came from.</h2>
   <div class="trace-grid">
     <div class="map rv">
-      <svg viewBox="0 0 800 540" role="img" aria-label="Abstract map of the Kashmir Valley showing where each sample piece was made">
-        <defs><mask id="routeMask"><path id="routeMaskPath" d=""/></mask></defs>
-        <g fill="none" stroke="#111" stroke-opacity=".07" stroke-width="1">
-          <path d="M40 270 C60 120 210 40 400 40 C600 40 760 120 770 260 C780 420 620 510 410 510 C200 510 30 430 40 270 Z"/>
-          <path d="M80 270 C100 150 230 80 400 80 C580 80 720 150 730 265 C738 395 600 470 410 470 C220 470 70 400 80 270 Z"/>
-          <path d="M120 272 C140 180 250 120 400 120 C560 120 680 180 690 268 C696 370 580 430 410 430 C240 430 112 375 120 272 Z"/>
-          <path d="M160 275 C180 205 270 160 400 160 C540 160 640 210 648 272 C654 345 560 392 410 392 C260 392 154 350 160 275 Z"/>
+      <svg viewBox="0 0 800 540" role="img" aria-label="Map of the Kashmir Valley showing where each sample piece was made">
+        <defs>
+          <pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r=".9" fill="#111" fill-opacity=".22"/></pattern>
+          <pattern id="dotsFaint" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r=".7" fill="#111" fill-opacity=".07"/></pattern>
+          <path id="valley" d="M70 200 C90 150 160 110 230 105 C300 100 360 150 430 190 C510 235 600 300 640 380 C665 430 640 480 590 480 C540 480 500 430 460 380 C420 330 360 310 290 300 C210 290 140 270 90 245 C70 235 64 215 70 200 Z"/>
+          <clipPath id="valleyClip"><use href="#valley"/></clipPath>
+          <clipPath id="frame"><rect x="0" y="0" width="800" height="540"/></clipPath>
+          <mask id="routeMask"><path id="routeMaskPath" d=""/></mask>
+        </defs>
+
+        <!-- mountains: ridge marks are scattered around the valley by the script below -->
+        <rect width="800" height="540" fill="url(#dotsFaint)"/>
+        <g id="ridges" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round"></g>
+        <use id="valleyHalo" href="#valley" fill="none" stroke="#111" stroke-opacity=".04" stroke-width="18"/>
+
+        <!-- graticule -->
+        <g stroke="#111" stroke-opacity=".08" stroke-dasharray="2 5">
+          <path d="M142.9 0V540M348.6 0V540M554.3 0V540M0 116.7H800M0 270H800M0 423.3H800"/>
         </g>
-        <path d="M610 420 C560 400 520 360 470 330 C430 300 400 280 360 250 C320 220 300 210 260 200 C220 190 180 170 150 150" fill="none" stroke="#7FA0A8" stroke-width="2" stroke-opacity=".45" stroke-linecap="round"/>
-        <ellipse cx="394" cy="190" rx="22" ry="14" fill="#7FA0A8" fill-opacity=".15"/>
-        <ellipse cx="190" cy="138" rx="36" ry="18" fill="#7FA0A8" fill-opacity=".12"/>
-        <path d="M780 120 C700 140 640 170 600 190" stroke="#111" stroke-opacity=".2" stroke-width="1" fill="none" stroke-dasharray="2 4"/>
+        <g font-family="Geist Mono,monospace" font-size="9.5" fill="#8A8A8A" letter-spacing=".4">
+          <text x="146.9" y="14">74.4°E</text><text x="352.6" y="14">74.8°E</text><text x="558.3" y="14">75.2°E</text>
+          <text x="8" y="112.7">34.4°N</text><text x="8" y="266">34.0°N</text><text x="8" y="419.3">33.6°N</text>
+        </g>
+
+        <!-- the valley floor -->
+        <use href="#valley" fill="#fff"/>
+        <rect width="800" height="540" fill="url(#dots)" clip-path="url(#valleyClip)"/>
+        <use href="#valley" fill="none" stroke="#111" stroke-opacity=".35" stroke-width="1"/>
+
+        <!-- ranges -->
+        <g font-family="Instrument Sans,sans-serif" font-size="11" fill="#9A9A9A" letter-spacing="4">
+          <text transform="translate(250 395) rotate(28)">PIR PANJAL</text>
+          <text transform="translate(445 128) rotate(28)">GREAT HIMALAYA</text>
+        </g>
+
+        <!-- water -->
+        <path d="M580 446 C560 410 540 390 528 373 C505 340 470 300 430 275 C400 258 370 250 350 240 C320 222 290 175 255 140 C225 120 180 160 140 185 C110 200 70 205 0 214" fill="none" stroke="#6E93A0" stroke-width="1.6" stroke-opacity=".7" stroke-linecap="round"/>
+        <ellipse cx="245.7" cy="132" rx="26" ry="13" fill="#6E93A0" fill-opacity=".22" stroke="#6E93A0" stroke-opacity=".5"/>
+        <ellipse cx="386" cy="224" rx="12" ry="8" fill="#6E93A0" fill-opacity=".22" stroke="#6E93A0" stroke-opacity=".5"/>
+        <g font-family="Instrument Sans,sans-serif" font-style="italic" font-size="11" fill="#5F8492">
+          <text x="226" y="112">Wular</text><text x="401" y="216">Dal</text>
+          <text transform="translate(470 318) rotate(36)">Jhelum</text>
+        </g>
+
+        <!-- route -->
         <path id="route" d="" mask="url(#routeMask)"/>
-        <g class="pin" data-id="changthang" transform="translate(760 112)"><circle class="ring" r="9"/><circle class="core" r="5"/><text x="-14" y="-14" text-anchor="end">Changthang ↗</text></g>
-        <g class="pin" data-id="srinagar" transform="translate(340 222)"><circle class="ring" r="9"/><circle class="core" r="5"/><text x="10" y="22">Srinagar</text></g>
-        <g class="pin" data-id="zadibal" transform="translate(366 202)"><circle class="ring" r="9"/><circle class="core" r="5"/><text x="-12" y="-12" text-anchor="end">Zadibal</text></g>
-        <g class="pin" data-id="kanihama" transform="translate(222 228)"><circle class="ring" r="9"/><circle class="core" r="5"/><text x="-12" y="24" text-anchor="middle">Kanihama</text></g>
-        <g class="pin" data-id="pampore" transform="translate(436 268)"><circle class="ring" r="9"/><circle class="core" r="5"/><text x="14" y="18">Pampore</text></g>
-        <g class="pin" data-id="anantnag" transform="translate(560 396)"><circle class="ring" r="9"/><circle class="core" r="5"/><text x="14" y="4">Anantnag</text></g>
+
+        <!-- pins -->
+        <g class="pin" data-id="changthang" transform="translate(742 170)"><circle class="halo" r="8"/><circle class="core" r="4.5"/><text x="-12" y="-12" text-anchor="end">Changthang, Ladakh ↗</text></g>
+        <g class="pin" data-id="srinagar" transform="translate(348.6 239.3)"><circle class="halo" r="8"/><circle class="core" r="4.5"/><text x="8" y="24">Srinagar</text></g>
+        <g class="pin" data-id="kanihama" transform="translate(256 247)"><circle class="halo" r="8"/><circle class="core" r="4.5"/><text x="-10" y="22" text-anchor="end">Kanihama</text></g>
+        <g class="pin" data-id="pampore" transform="translate(415.4 262.3)"><circle class="halo" r="8"/><circle class="core" r="4.5"/><text x="12" y="20">Pampore</text></g>
+        <g class="pin" data-id="anantnag" transform="translate(528.6 373.5)"><circle class="halo" r="8"/><circle class="core" r="4.5"/><text x="12" y="4">Anantnag</text></g>
+
+        <!-- scale + north -->
+        <g transform="translate(620 512)" font-family="Geist Mono,monospace" font-size="9.5" fill="#8A8A8A">
+          <path d="M0 0H139.3M0 -4V4M69.6 -3V3M139.3 -4V4" stroke="#111" stroke-opacity=".5"/>
+          <text x="0" y="-9">0</text><text x="139.3" y="-9" text-anchor="end">25 KM</text>
+        </g>
+        <g transform="translate(762 48)" fill="none" stroke="#111" stroke-opacity=".55">
+          <path d="M0 14V-10M-5 -4L0 -12L5 -4"/>
+          <text x="0" y="28" text-anchor="middle" font-family="Geist Mono,monospace" font-size="9.5" fill="#8A8A8A" stroke="none">N</text>
+        </g>
       </svg>
-      <span class="mono">The Valley, not to scale</span>
     </div>
-    <div class="rv">
+    <div class="rv" style="--d:.1s">
       <span class="small muted">Sample records</span>
       <div class="chips" role="group" aria-label="Choose a sample piece">
         <button class="chip" data-piece="kani" aria-pressed="true">Kani shawl</button>
@@ -307,43 +323,31 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
 <section class="promise wrap" aria-label="What comes with every piece" style="padding-bottom:clamp(110px,14vw,200px)">
   <ol>
     <li class="rv"><h3>Signed</h3><p>The insignia of the artisan who made it.</p></li>
-    <li class="rv"><h3>Traced</h3><p>A geo-tagged record of every hand it passed through.</p></li>
-    <li class="rv"><h3>Open price</h3><p>What the maker, materials and house each receive.</p></li>
-    <li class="rv"><h3>Kept</h3><p>A buyback if you ever let it go.</p></li>
+    <li class="rv" style="--d:.08s"><h3>Traced</h3><p>A geo-tagged record of every hand it passed through.</p></li>
+    <li class="rv" style="--d:.16s"><h3>Open price</h3><p>What the maker, materials and house each receive.</p></li>
+    <li class="rv" style="--d:.24s"><h3>Kept</h3><p>A buyback if you ever let it go.</p></li>
   </ol>
 </section>
 
-<!-- STORY: progress + founders -->
-<section class="journey sec wrap" id="story" aria-labelledby="story-title">
-  <div class="sec-head small"><h2 id="story-title" class="small">Where we are</h2><span class="muted">Building in the open</span></div>
+<!-- ORIGIN -->
+<section class="origin sec wrap" id="origin" aria-labelledby="origin-title">
+  <h2 id="origin-title" class="lead rv">An idea from a classroom at Ashoka University. <span>2023.</span></h2>
+  <p class="body rv">KwongPosh began in an entrepreneurship class, with one question: what if the arts and crafts of Kashmir were rebuilt from the hand up? Fair to the maker, honest about where every piece comes from.</p>
   <div class="figures">
     <div class="figure rv"><strong data-count="17">17</strong><span>artisans onboarded across Kashmir</span></div>
-    <div class="figure rv"><strong data-count="170">170</strong><span>one-of-one pieces commissioned</span></div>
-    <div class="figure rv"><strong data-count="1500">1,500</strong><span>pieces reserved for the everyday collection</span></div>
-  </div>
-  <div class="road rv">
-    <div><span class="small now">Now</span><p>A founding circle, by invitation, and our store in Srinagar.</p></div>
-    <div><span class="small">Next</span><p>Every piece online with its full record.</p></div>
-    <div><span class="small">Later</span><p>A fair home for the crafts of Kashmir, then India.</p></div>
+    <div class="figure rv" style="--d:.08s"><strong data-count="170">170</strong><span>one-of-one pieces commissioned</span></div>
+    <div class="figure rv" style="--d:.16s"><strong data-count="1500">1,500</strong><span>pieces reserved for the everyday collection</span></div>
   </div>
 </section>
 
-<section class="sec wrap" aria-labelledby="founders-title">
-  <h2 id="founders-title" class="big rv" style="margin-bottom:clamp(40px,6vw,72px)">A father and a son.</h2>
-  <div class="founder-grid">
-    <div class="founder rv"><h3>Fayaz Ahmed Khan</h3><span class="small">Co-founder</span><p>Three decades in the crafts of Kashmir. He knows the families, the looms and the workshops by name.</p></div>
-    <div class="founder rv"><h3>Hazim Bin Fayaz</h3><span class="small">Co-founder</span><p>Building the platform that carries the Valley's work to the world, for decades rather than seasons.</p></div>
-  </div>
-</section>
-
-<!-- JOIN -->
-<section class="join wrap" id="join" aria-labelledby="join-title">
-  <h2 id="join-title" class="rv">Join the circle.</h2>
-  <p class="rv">By invitation while the collection is small. We write only when there is a piece worth seeing.</p>
+<!-- ACCESS -->
+<section class="access wrap" id="access" aria-labelledby="access-title">
+  <h2 id="access-title" class="rv">Be first to see the collection.</h2>
+  <p class="rv">Early access while the first pieces are few. We write only when there is something worth seeing.</p>
   <form class="rv" id="form" novalidate>
     <label for="email">Email address</label>
     <input id="email" type="email" placeholder="Email address" autocomplete="email" required>
-    <button class="btn" type="submit">Join</button>
+    <button class="btn" type="submit">Request access</button>
   </form>
   <p class="note" id="note" role="status"></p>
 </section>
@@ -352,44 +356,180 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
 
 <footer class="wrap">
   <div class="cols">
-    <a class="logo" href="#top"><img src="assets/roundel.webp" alt="" width="30" height="30" loading="lazy">KwongPosh</a>
+    <a class="brand" href="#top" aria-label="KwongPosh home"><img src="assets/logo-lockup.webp" alt="KwongPosh" width="351" height="419" loading="lazy"></a>
     <address>Botashah Mohalla, Lal Bazar<br>Srinagar, J&amp;K 190023<br><br>G-65, New Market, Lindsay Street<br>Kolkata, WB 700087</address>
     <ul><li><a href="mailto:contact@kwongposh.in">contact@kwongposh.in</a></li><li><a href="tel:+919796785152">+91 9796 78 5152</a></li><li><a href="https://kwongposh.in">kwongposh.in</a></li></ul>
   </div>
-  <div class="bottom"><span>&copy; 2026 KwongPosh</span><span class="ur" lang="ur">خدا حافظ</span></div>
+  <div class="bottom"><span>&copy; 2026 KwongPosh</span><span>Made by hand in Kashmir</span></div>
 </footer>
 
 <script>
 (function(){
-  document.documentElement.classList.add('js');
+  var root=document.documentElement;root.classList.add('js');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasIO='IntersectionObserver' in window;
+  var hero=document.getElementById('hero');
 
-  /* reveals */
+  /* ============ hanging threads (verlet ropes) ============ */
+  var cv=document.getElementById('warp'),cx=cv.getContext('2d');
+  var W=0,H=0,DPR=1,threads=[],running=false,visible=true,raf=0,t0=performance.now();
+  var mouse={x:-9999,y:-9999,vx:0,vy:0,px:-9999,py:-9999,active:false};
+  var INK='rgba(17,17,17,', RED='160,40,31', SAF='201,138,43';
+
+  function build(){
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    W=hero.clientWidth;H=hero.clientHeight;
+    cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);
+    threads=[];
+    var narrow=W<760,spacing=narrow?11:13,count=Math.floor(W/spacing),off=(W-(count-1)*spacing)/2;
+    for(var i=0;i<count;i++){
+      var x=off+i*spacing,t=Math.abs(x-W/2)/(W/2);
+      // arch: short over the logo, long at the edges, a touch of irregularity like a hand-cut fringe
+      var L=narrow?H*(.08+.3*Math.pow(t,1.4)):H*(.12+.8*Math.pow(t,1.9));
+      L*=1+(Math.sin(i*12.9898)*43758.5453%1)*.06;
+      var seg=narrow?14:16,n=Math.max(3,Math.round(L/seg)),pts=[];
+      for(var j=0;j<n;j++){var y=reduce?j*seg:j*seg*.04;pts.push({x:x,y:y,ox:x,oy:y})}
+      var r=(i*7919)%23,kind=r===0?RED:(r===11?SAF:null);
+      threads.push({x:x,pts:pts,seg:seg,kind:kind,w:kind?1.2:1,a:kind?.85:(.16+((i*31)%7)/60)});
+    }
+  }
+
+  function step(dt,time){
+    var g=900*dt*dt,R=narrowR(),R2=R*R;
+    var sp=Math.min(Math.hypot(mouse.vx,mouse.vy),2200);
+    for(var k=0;k<threads.length;k++){
+      var th=threads[k],p=th.pts,n=p.length;
+      // a slow breeze, applied as a tiny acceleration so it never builds up
+      var wind=(Math.sin(time*.0005+th.x*.011)*14+Math.sin(time*.0011+th.x*.027)*6)*dt*dt;
+      for(var j=1;j<n;j++){
+        var q=p[j],vx=(q.x-q.ox)*.975,vy=(q.y-q.oy)*.975;
+        q.ox=q.x;q.oy=q.y;
+        q.x+=vx+wind*(j/n);q.y+=vy+g;
+        if(mouse.active){
+          var dx=q.x-mouse.x,dy=q.y-mouse.y,d2=dx*dx+dy*dy;
+          if(d2<R2){
+            var d=Math.sqrt(d2)||1,f=(1-d/R);
+            q.x+=dx/d*f*(1.8+sp*.0025)+mouse.vx*dt*f*.32;
+            q.y+=dy/d*f*1.0+mouse.vy*dt*f*.22;
+          }
+        }
+      }
+      // rope constraint: only resists stretching, so threads fall and unfurl from the bar
+      for(var it=0;it<4;it++){
+        p[0].x=th.x;p[0].y=0;
+        for(var j=1;j<n;j++){
+          var a=p[j-1],b=p[j],dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy);
+          if(d>th.seg){var diff=(d-th.seg)/d;
+            if(j===1){b.x-=dx*diff;b.y-=dy*diff}
+            else{a.x+=dx*diff*.5;a.y+=dy*diff*.5;b.x-=dx*diff*.5;b.y-=dy*diff*.5}
+          }
+        }
+      }
+    }
+  }
+  function narrowR(){return W<760?70:110}
+
+  function draw(){
+    cx.clearRect(0,0,W,H);
+    cx.lineCap='round';cx.lineJoin='round';
+    for(var k=0;k<threads.length;k++){
+      var th=threads[k],p=th.pts,n=p.length;
+      cx.beginPath();cx.moveTo(p[0].x,p[0].y);
+      for(var j=1;j<n-1;j++){var mx=(p[j].x+p[j+1].x)/2,my=(p[j].y+p[j+1].y)/2;cx.quadraticCurveTo(p[j].x,p[j].y,mx,my)}
+      cx.lineTo(p[n-1].x,p[n-1].y);
+      cx.strokeStyle=th.kind?'rgba('+th.kind+','+th.a+')':INK+th.a+')';
+      cx.lineWidth=th.w;cx.stroke();
+      // the knot at the end of each thread
+      var e=p[n-1];cx.beginPath();cx.arc(e.x,e.y,th.kind?1.9:1.3,0,6.283);
+      cx.fillStyle=th.kind?'rgba('+th.kind+',.95)':INK+(th.a+.15)+')';cx.fill();
+    }
+    // the bar the warp hangs from
+    cx.fillStyle='rgba(17,17,17,.12)';cx.fillRect(0,0,W,1);
+  }
+
+  var last=performance.now();
+  function loop(now){
+    var dt=Math.min((now-last)/1000,1/30);last=now;
+    mouse.vx*=.88;mouse.vy*=.88;
+    step(dt,now);draw();
+    raf=running?requestAnimationFrame(loop):0;
+  }
+  function start(){if(!running&&!reduce&&visible&&!document.hidden){running=true;last=performance.now();raf=requestAnimationFrame(loop)}}
+  function stop(){running=false;if(raf)cancelAnimationFrame(raf);raf=0}
+
+  function onMove(e){
+    var r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,now=performance.now();
+    if(mouse.active&&mouse.t){var dt=Math.max((now-mouse.t)/1000,1/240);mouse.vx=(x-mouse.x)/dt;mouse.vy=(y-mouse.y)/dt}
+    mouse.x=x;mouse.y=y;mouse.t=now;mouse.active=true;
+  }
+  hero.addEventListener('pointermove',onMove,{passive:true});
+  hero.addEventListener('pointerdown',onMove,{passive:true});
+  hero.addEventListener('pointerleave',function(){mouse.active=false;mouse.t=0});
+
+  build();
+  if(reduce){
+    // settle into a still life
+    for(var s=0;s<240;s++)step(1/60,s*16);draw();
+  }else{start()}
+  requestAnimationFrame(function(){hero.classList.add('ready')});
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){
+    var w=hero.clientWidth;if(Math.abs(w-W)<2)return; // ignore mobile URL-bar height changes
+    build();if(reduce){for(var s=0;s<240;s++)step(1/60,s*16);draw()}
+  },150)});
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():start()});
+  if(hasIO)new IntersectionObserver(function(es){visible=es[0].isIntersecting;visible?start():stop()}).observe(hero);
+
+  /* ============ nav ============ */
+  var nav=document.getElementById('nav');
+  if(hasIO)new IntersectionObserver(function(es){nav.classList.toggle('solid',!es[0].isIntersecting)},{rootMargin:'-64px 0px 0px 0px'}).observe(document.querySelector('.hero-inner .btn'));
+
+  /* ============ reveals ============ */
   var els=document.querySelectorAll('.rv');
   if(hasIO&&!reduce){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
     els.forEach(function(el){io.observe(el)});
   }else{els.forEach(function(el){el.classList.add('in')})}
 
-  /* nav hairline once the hero text scrolls under it */
-  if(hasIO){
-    var nav=document.getElementById('nav');
-    new IntersectionObserver(function(es){nav.classList.toggle('line',!es[0].isIntersecting)},{rootMargin:'-64px 0px 0px 0px'}).observe(document.querySelector('.hero-top'));
-  }
+  /* ============ plucked strings under each craft ============ */
+  document.querySelectorAll('.row').forEach(function(row){
+    var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg'),path=document.createElementNS(NS,'path');
+    svg.setAttribute('class','string');svg.setAttribute('viewBox','0 0 1000 20');svg.setAttribute('preserveAspectRatio','none');svg.setAttribute('aria-hidden','true');
+    path.setAttribute('d','M0 10 Q500 10 1000 10');svg.appendChild(path);row.appendChild(svg);
+    var anim=0,lastY=null,lastT=0;
+    function pluck(px,amp){
+      if(reduce)return;
+      cancelAnimationFrame(anim);row.classList.add('plucked');
+      var start=performance.now(),cxp=Math.max(80,Math.min(920,px*1000));
+      (function f(now){
+        var t=(now-start)/1000,a=amp*Math.exp(-t*3.2)*Math.cos(t*30);
+        path.setAttribute('d','M0 10 Q'+cxp.toFixed(1)+' '+(10+a).toFixed(2)+' 1000 10');
+        if(t<1.6)anim=requestAnimationFrame(f);else{path.setAttribute('d','M0 10 Q500 10 1000 10');row.classList.remove('plucked')}
+      })(start);
+    }
+    row.addEventListener('pointermove',function(e){lastY=e.clientY;lastT=performance.now()},{passive:true});
+    row.addEventListener('pointerleave',function(e){
+      var r=row.getBoundingClientRect();
+      if(e.clientY>=r.bottom-14){ // left through the bottom string: pluck it
+        var v=lastY!==null?Math.min(Math.abs(e.clientY-lastY)/Math.max(performance.now()-lastT,8)*14,16):8;
+        pluck((e.clientX-r.left)/r.width,Math.max(5,v));
+      }
+    });
+    row.addEventListener('pointerenter',function(e){
+      var r=row.getBoundingClientRect();
+      if(e.clientY<=r.top+14){var prev=row.previousElementSibling;if(prev&&prev.__pluck)prev.__pluck((e.clientX-r.left)/r.width,7)}
+    });
+    row.__pluck=pluck;
+  });
 
-  /* count up */
+  /* ============ count up ============ */
   function countUp(el){
-    var end=+el.dataset.count;if(reduce){return}
-    var t0=null;function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1400,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(end*e).toLocaleString('en-US');if(p<1)requestAnimationFrame(step)}
-    requestAnimationFrame(step);
+    if(reduce)return;var end=+el.dataset.count,t0=null;
+    (function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/1400,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(end*e).toLocaleString('en-US');if(p<1)requestAnimationFrame(f)})(performance.now());
   }
-  if(hasIO){
-    var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);co.unobserve(e.target)}})},{threshold:.6});
-    document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el)});
-  }
+  if(hasIO){var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);co.unobserve(e.target)}})},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el)})}
 
-  /* provenance tracer */
+  /* ============ provenance tracer ============ */
   var PINS={};
   document.querySelectorAll('.pin').forEach(function(g){
     var m=/translate\(([\d.]+)\s+([\d.]+)\)/.exec(g.getAttribute('transform'));
@@ -399,7 +539,7 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
     kani:{code:'KP-017-KNH',stops:[
       ['changthang','Fibre combed from Changthangi goats','Changthang, Ladakh, 33.3° N 78.5° E'],
       ['srinagar','Hand-spun on the yinder wheel','Srinagar, 34.08° N 74.80° E'],
-      ['kanihama','Woven on a kani loom','Kanihama, 34.07° N 74.62° E'],
+      ['kanihama','Woven on a kani loom','Kanihama, 34.06° N 74.62° E'],
       ['srinagar','Insignia sewn, SKU sealed','KwongPosh, Lal Bazar, Srinagar']
     ],note:'Sample record.'},
     walnut:{code:'KP-042-ANT',stops:[
@@ -408,10 +548,10 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
       ['srinagar','Carved in deep relief','Srinagar, 34.08° N 74.80° E'],
       ['srinagar','Insignia branded, SKU sealed','KwongPosh, Lal Bazar, Srinagar']
     ],note:'Sample record. Fallen, never felled.'},
-    paper:{code:'KP-088-ZDB',stops:[
-      ['zadibal','Paper pulped and burnished','Zadibal, Srinagar, 34.11° N 74.81° E'],
+    paper:{code:'KP-088-SXR',stops:[
+      ['srinagar','Paper pulped and burnished','Zadibal, Srinagar, 34.11° N 74.81° E'],
       ['pampore','Saffron gathered for pigment','Pampore, 34.02° N 74.93° E'],
-      ['zadibal','Painted in naqashi','Zadibal, Srinagar, 34.11° N 74.81° E'],
+      ['srinagar','Painted in naqashi','Zadibal, Srinagar, 34.11° N 74.81° E'],
       ['srinagar','Insignia signed, SKU sealed','KwongPosh, Lal Bazar, Srinagar']
     ],note:'Sample record.'}
   };
@@ -424,15 +564,17 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
     timers.forEach(clearTimeout);timers=[];
     chips.forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.piece===key))});
     codeInput.value=piece.code;
-    var pts=piece.stops.map(function(s){return PINS[s[0]]});
+    var pts=piece.stops.map(function(s){return PINS[s[0]]}).filter(function(p,i,a){return i===0||p!==a[i-1]});
     var d='M'+pts[0].x+' '+pts[0].y;
     for(var i=1;i<pts.length;i++){
-      var a=pts[i-1],b=pts[i];if(a===b)continue;
-      d+=' Q'+((a.x+b.x)/2)+' '+((a.y+b.y)/2-Math.max(30,Math.abs(a.x-b.x)*.18))+' '+b.x+' '+b.y;
+      var a=pts[i-1],b=pts[i],dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy);
+      // bow each leg like a loose thread
+      var bow=Math.min(60,len*.22);
+      d+=' Q'+((a.x+b.x)/2-dy/len*bow).toFixed(1)+' '+((a.y+b.y)/2+dx/len*bow).toFixed(1)+' '+b.x+' '+b.y;
     }
     route.setAttribute('d',d);maskPath.setAttribute('d',d);
-    var len=maskPath.getTotalLength()||1;
-    maskPath.style.transition='none';maskPath.style.strokeDasharray=len;maskPath.style.strokeDashoffset=reduce?0:len;
+    var L=maskPath.getTotalLength()||1;
+    maskPath.style.transition='none';maskPath.style.strokeDasharray=L;maskPath.style.strokeDashoffset=reduce?0:L;
     maskPath.getBoundingClientRect();maskPath.style.transition='';
     requestAnimationFrame(function(){maskPath.style.strokeDashoffset=0});
     var used={};piece.stops.forEach(function(s){used[s[0]]=1});
@@ -440,7 +582,7 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
     steps.innerHTML='';
     piece.stops.forEach(function(s){
       var li=document.createElement('li'),w=document.createElement('span'),r=document.createElement('span');
-      w.className='what';w.textContent=s[1];r.className='where mono';r.textContent=s[2];
+      w.textContent=s[1];r.className='where mono';r.textContent=s[2];
       li.appendChild(w);li.appendChild(r);steps.appendChild(li);
     });
     var lis=steps.querySelectorAll('li');
@@ -457,29 +599,47 @@ footer .bottom .ur{font-size:20px;line-height:1.5}
   chips.forEach(function(c){c.addEventListener('click',function(){trace(c.dataset.piece)})});
   document.querySelectorAll('.pin').forEach(function(g){
     g.addEventListener('click',function(){
-      var id=g.dataset.id;
-      var k=Object.keys(PIECES).find(function(p){return PIECES[p].stops.some(function(s){return s[0]===id})});
-      if(k)trace(k);
+      var id=g.dataset.id,cur=document.querySelector('.chip[aria-pressed="true"]').dataset.piece;
+      var keys=Object.keys(PIECES).filter(function(p){return PIECES[p].stops.some(function(s){return s[0]===id})});
+      if(keys.length)trace(keys[(keys.indexOf(cur)+1)%keys.length]);
     });
   });
   document.getElementById('codeForm').addEventListener('submit',function(e){
     e.preventDefault();
     var v=codeInput.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
     var k=Object.keys(PIECES).find(function(p){var c=PIECES[p].code.replace(/-/g,'');return v===c||(v.length>=3&&c.indexOf(v)>-1)});
-    if(!trace(k)){note.textContent='Not in our sample registry yet. Try KP-017-KNH, KP-042-ANT or KP-088-ZDB.'}
+    if(!trace(k)){note.textContent='Not in our sample registry yet. Try KP-017-KNH, KP-042-ANT or KP-088-SXR.'}
   });
-  var mapEl=document.querySelector('.map');
-  if(hasIO){
-    var mo=new IntersectionObserver(function(es){if(es[0].isIntersecting){trace('kani');mo.disconnect()}},{threshold:.4});
-    mo.observe(mapEl);
-  }else{trace('kani')}
+  /* ridge marks: a field of small peaks on the ranges around the valley floor */
+  (function(){
+    var g=document.getElementById('ridges'),v=document.getElementById('valley');
+    if(!g||!v||!v.isPointInFill||!window.DOMPoint)return;
+    var NS='http://www.w3.org/2000/svg',cxv=360,cyv=290,d='',dd='',seed=7;
+    var clear=[[600,488,780,530],[740,20,790,90],[0,0,800,24],[0,96,64,124],[0,250,64,278],[0,404,64,432],[560,140,780,186]];
+    function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
+    function inScaled(x,y,k){return v.isPointInFill(new DOMPoint(cxv+(x-cxv)/k,cyv+(y-cyv)/k))}
+    for(var y=26;y<530;y+=15){for(var x=24;x<790;x+=17){
+      var px=x+(rnd()-.5)*9,py=y+(rnd()-.5)*8;
+      if(inScaled(px,py,1.06))continue;          // keep the valley floor clear
+      if(clear.some(function(r){return px>r[0]&&px<r[2]&&py>r[1]&&py<r[3]}))continue; // and the map furniture
+      var near=inScaled(px,py,1.5),mid=inScaled(px,py,2.1);
+      if(!mid&&rnd()>.35)continue;                // thin out far from the valley
+      var s=near?(4+rnd()*3):(2.6+rnd()*2.4),h=s*(.8+rnd()*.5);
+      var seg='M'+(px-s).toFixed(1)+' '+py.toFixed(1)+'L'+px.toFixed(1)+' '+(py-h).toFixed(1)+'L'+(px+s).toFixed(1)+' '+py.toFixed(1);
+      if(near)d+=seg;else dd+=seg;
+    }}
+    [[d,.26],[dd,.13]].forEach(function(o){var pth=document.createElementNS(NS,'path');pth.setAttribute('d',o[0]);pth.setAttribute('stroke-opacity',o[1]);pth.setAttribute('stroke-width','.9');g.appendChild(pth)});
+  })();
 
-  /* join */
+  if(hasIO){var mo=new IntersectionObserver(function(es){if(es[0].isIntersecting){trace('kani');mo.disconnect()}},{threshold:.4});mo.observe(document.querySelector('.map'))}
+  else trace('kani');
+
+  /* ============ access form ============ */
   var form=document.getElementById('form'),email=document.getElementById('email'),fnote=document.getElementById('note');
   form.addEventListener('submit',function(e){
     e.preventDefault();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){fnote.textContent='Please enter a valid email address.';fnote.className='note err';email.focus();return}
-    form.style.display='none';fnote.className='note';fnote.textContent='Thank you. We will be in touch from Srinagar.';
+    form.style.display='none';fnote.className='note';fnote.textContent='Thank you. We will write to you from Srinagar.';
   });
 })();
 </script>
